@@ -1,0 +1,123 @@
+.postLine{
+	border-top: 1px solid #E1E4E8;
+	padding-top: 13px;
+	display: flex;
+	gap: 15px;
+		
+}
+.checkboxPostLine{
+	display: none;
+}
+
+.check{
+	margin-top: 13px;
+	display: inline-block;
+	width:16px;
+	height:16px;
+	border: 2px solid #0366D6; 
+	position: relative;
+	cursor: pointer;
+}
+
+.checkboxPostLine:checked + .checker .check{
+	&:before{
+		content: '';
+		width:10px;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		height:10px;
+		z-index: 100;
+		background: #0366D6;
+	}
+}
+/* .checker{
+	width:20px;
+	height:20px;
+	margin: 0 14px 0px 0; 
+	&:before,
+	&:after {
+		content: "";
+		position: absolute;
+		z-index: 1;
+		width:16px;
+		height:16px;
+		border: 2px solid #0366D6; 
+		line-height: 0px;
+	}
+	&:after {
+		z-index: 0;
+		border: none;
+	}
+}
+
+.checkboxPostLine:checked + .postDescriptionLine .checker {
+  &:before {
+		width:10px;
+		height:10px;
+		z-index: 100;
+		background: #0366D6;
+	} 
+}
+ */
+.postDescriptionLine{
+	margin-top: 10px;
+	align-self: flex-start;
+	flex: 1 0 auto;
+}
+
+.titlePostLine{
+	margin: 0 0 4px 0;
+	font-style: normal;
+	font-weight: 700;
+	font-size: 22px;
+	line-height: 26px;
+	color: #0366D6;
+}
+
+.textPostLine{
+font-style: normal;
+font-weight: 400;
+font-size: 14.5px;
+line-height: 17px;
+color: #000000;
+}
+
+.tagsLine{
+	margin-top: 25px;
+	display: flex;
+	gap: 11px;
+}
+
+.additionalInformationLine{
+	display: flex;
+	flex-direction: column;
+	flex: 0 0 auto;
+	justify-content: space-between;
+}
+
+.ratingLine{
+	display: flex;
+	align-items: flex-end ;
+}
+
+.starLine{
+	margin-right: 10px;
+}
+
+.stargazers_countLine{
+	font-style: normal;
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 15px;
+	color: #3C4146;
+}
+
+.languageLine{
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14.5px;
+	line-height: 17px;
+	color: #999999;	
+}

@@ -1,0 +1,14 @@
+.header {
+	background-color: #3C4146;
+	min-height: 60px;
+	display: flex;
+	position:static;
+	justify-content: space-between;
+	padding: 0 30px;
+	align-items: center;
+}
+
+.header-logo{
+	display: flex;
+	flex-direction: column;
+}

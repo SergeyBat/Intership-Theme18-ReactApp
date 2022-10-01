@@ -1,0 +1,79 @@
+.postTile{
+	background: #FFFFFF;
+	border: 1px solid #E0E0E0;
+	box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.25);
+	display: flex;
+	padding: 20px 40px;
+	gap: 15px;
+	flex-direction: column;
+}
+
+
+.postDescriptionTile{
+	margin-top: 10px;
+	align-self: flex-start;
+	flex: 1 0 auto;
+	min-width: 350px;
+}
+
+.titlePostTile{
+	margin: 0 0 4px 0;
+	font-style: normal;
+	font-weight: 700;
+	font-size: 22px;
+	line-height: 26px;
+	color: #0366D6;
+}
+
+.textPostTile{
+font-style: normal;
+font-weight: 400;
+font-size: 14.5px;
+line-height: 17px;
+color: #000000;
+}
+
+.tagsTile{
+	margin-top: 25px;
+	display: flex;
+	gap: 11px;
+}
+
+.additionalInformationTile{
+	display: flex;
+	flex-direction: row;
+	flex: 0 0 auto;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+.ratingTile{
+	display: flex;
+	align-items: flex-end ;
+}
+
+.starTile{
+	margin-right: 10px;
+}
+
+.stargazers_countTile{
+	font-style: normal;
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 15px;
+	color: #3C4146;
+}
+
+.languageTile{
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14.5px;
+	line-height: 17px;
+	color: #999999;	
+}
+
+
+.buttonTile{
+	display: inline-block;
+	align-self: center;
+}
