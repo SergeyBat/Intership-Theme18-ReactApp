@@ -15,12 +15,9 @@ import MyList from './routes/pages/MyList/MyList';
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
-		<Route path="/" element={<Root />} errorElement={<ErrorPage />}>
+		<Route path="/" element={<Root />}>
 			<Route path="/search" element={<Search />} />
-			<Route
-				path="/my-list"
-				element={<MyList />}
-			/>
+			<Route path="/my-list" element={<MyList />} />
 		</Route>
 	));
 

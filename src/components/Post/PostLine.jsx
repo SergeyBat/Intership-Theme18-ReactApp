@@ -3,34 +3,36 @@ import './PostLine.scss'
 import { Tag } from '../Tag/Tag'
 import Star from './Star'
 
-const PostLine = ({ id = 0, title = "TruyGhost/Ghost", text = 'The platform for professional publishers', tag = "cms", stargazers_count = "25k", language = "JavaScript", ...props } = props) => {
+const PostLine = ({ item, dataActivity = false, changeMyList, ...props } = props) => {
 	return (
 		<div className="postLine">
-			<Input type="checkbox" id={id} className="checkboxPostLine" />
-			<label htmlFor={id} className='checker'>
+			<Input dataActivity={item.dataActivity} onChange={changeMyList} type="checkbox" id={item.id} className="checkboxPostLine" />
+			<label htmlFor={item.id} className='checker'>
 				<span className='check'></span>
 			</label>
-			<div htmlFor={id} className='postDescriptionLine'>
+			<div className='postDescriptionLine'>
 
 				<h2 className="titlePostLine">
-					{title}
+					{item.name}
 				</h2>
 
 				<span className='textPostLine'>
-					{text}
+					{item.description}
 				</span>
 				<div className="tagsLine">
-					<Tag />
-					<Tag tag={tag} />
+					{item.topics.map((e, index) => (
+						<Tag key={index+e} tag={e} />
+					))}
+
 				</div>
 			</div>
 			<div className="additionalInformationLine">
 				<div className="ratingLine">
 					<Star className='starLine' />
-					<span className='stargazers_countLine'>{stargazers_count}</span>
+					<span className='stargazers_countLine'>{item.stargazers_count}</span>
 				</div>
 				<span className="languageLine">
-					{language}
+					{item.language}
 				</span>
 			</div>
 		</div>
