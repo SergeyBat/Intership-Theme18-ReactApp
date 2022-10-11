@@ -14,14 +14,24 @@ class Posts extends React.Component {
     if (objElement.el === undefined) {
       objElement.el = this.props.fetchedPosts.find(e => e.id === id)
     }
+
+    const fetchedPosts = this.props.fetchedPosts.map(e => {
+      let item = {...e}
+      if (item.id === id) {
+        item.dataActivity === 'true' ? item.dataActivity = 'false' : item.dataActivity = 'true'
+      }
+      return item
+    })
     if (objElement.el.dataActivity === "false") {
       if (this.props.myListPosts.length !== 0 && this.props.myListPosts.find(element => element.id === id)) {
         return
       }
-      this.props.addItemOnMyList({...objElement.el})
+      const itemElement = {...objElement.el}
+      itemElement.dataActivity = "true"
+      this.props.addItemOnMyList(itemElement, fetchedPosts)
     } else if (objElement.el.dataActivity === "true") {
       const myListPosts = this.props.myListPosts.filter((element) => element.id !== id)
-      this.props.delItemOnMyList(myListPosts)
+      this.props.delItemOnMyList({myListPosts, fetchedPosts})
     }
   }
 

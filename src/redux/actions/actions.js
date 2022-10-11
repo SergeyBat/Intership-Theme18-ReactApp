@@ -18,10 +18,10 @@ export function fetchPosts(dataRequest) {
   }
 }
 
-export function addItemOnMyList(payload) {
+export function addItemOnMyList(item, fetchedPosts) {
   return ({
     type: ADD_ITEM_MY_LIST,
-    payload
+    payload: {item, fetchedPosts}
   })
 }
 

@@ -21,10 +21,13 @@ export const postReducers = (state = initialState, action) => {
       })
       return {...state, fetchedPosts: action.payload}
     case ADD_ITEM_MY_LIST:
-      action.payload.dataActivity = 'true'
-      return {...state, myListPosts: [...state.myListPosts, action.payload]}
+      return {
+        ...state,
+        myListPosts: [...state.myListPosts, action.payload.item],
+        fetchedPosts: action.payload.fetchedPosts
+      }
     case DEL_ITEM_MY_LIST:
-      return {...state, myListPosts: action.payload}
+      return {...state, myListPosts: action.payload.myListPosts, fetchedPosts: action.payload.fetchedPosts}
     default:
       return state
   }
