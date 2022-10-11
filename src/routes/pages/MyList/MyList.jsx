@@ -1,22 +1,25 @@
+import React from 'react';
 import DisplayType from '../../../components/DisplayType/DisplayType';
 import Posts from '../../../layout/Posts/Posts';
-import './MyList.scss'
-import { useOutletContext } from 'react-router-dom';
+import './MyList.scss';
+import {connect} from "react-redux";
 
-const MyList = () => {
-	const context = useOutletContext()
-	const { displayType, setDisplayType, myList, responseSearch, setMyList, changeMyList } = context
-	const keyMyList = 'mylist';
+const MyList = (props) => {
 
-	return (
-		<>
-			<h1 className='title'> My List</h1>
-			<DisplayType displayType={displayType} setDisplayType={setDisplayType} />
-			<div className="wrapperPosts">
-				<Posts displayType={displayType} posts={myList} responseSearch={responseSearch} myList={myList} setMyList={setMyList} dataActivity="true" keyPreValue={keyMyList} changeMyList={changeMyList} />
-			</div>
-		</>
-	);
+
+  return (
+    <>
+      <h1 className='title'> My List</h1>
+      <DisplayType/>
+      <div className="wrapperPosts">
+        <Posts posts={props.myListPosts} keyPreValue="mylist"/>
+      </div>
+    </>
+  );
 }
-
-export default MyList;
+const mapStateToProps = state => {
+  return {
+    myListPosts: state.posts.myListPosts
+  }
+}
+export default connect(mapStateToProps, null)(MyList);

@@ -1,3 +1,4 @@
+import React from 'react';
 import './Select.scss'
 
 const Select = ({ defaultValue = '', name, onChange, ...props } = props) => {

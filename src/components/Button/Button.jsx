@@ -1,3 +1,4 @@
+import React from 'react';
 import './Button.scss'
 
 const Button = ({ textButton = 'Add to List', dataActivity, className, onClick, id, ...props } = props) => {

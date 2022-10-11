@@ -1,3 +1,4 @@
+import React from 'react';
 import './Input.scss'
 
 const Input = ({ onChange, name, dataActivity, stateButton, id, ...props } = props) => {

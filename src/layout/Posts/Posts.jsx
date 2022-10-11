@@ -3,64 +3,55 @@ import PostLine from '../../components/Post/PostLine';
 import PostTile from '../../components/Post/PostTile';
 import './Posts.scss'
 import NotFound from '../../components/NotFound/NotFound';
+import {connect} from "react-redux";
+import {addItemOnMyList, delItemOnMyList} from "../../redux/actions/actions";
 
-export default class Posts extends React.Component {
+class Posts extends React.Component {
+
+  changeMyList = ({target}, id) => {
+    const objElement = {el: undefined}
+    objElement.el = this.props.myListPosts.find(e => e.id === id)
+    if (objElement.el === undefined) {
+      objElement.el = this.props.fetchedPosts.find(e => e.id === id)
+    }
+    if (objElement.el.dataActivity === "false") {
+      if (this.props.myListPosts.length !== 0 && this.props.myListPosts.find(element => element.id === id)) {
+        return
+      }
+      this.props.addItemOnMyList({...objElement.el})
+    } else if (objElement.el.dataActivity === "true") {
+      const myListPosts = this.props.myListPosts.filter((element) => element.id !== id)
+      this.props.delItemOnMyList(myListPosts)
+    }
+  }
 
 
-	render() {
-		return (
-			<div className={`posts${this.props.displayType}`}>
-				{this.props.posts.length === 0
-					? <NotFound className="notFound" title='No results found' message='select other parameters and try again' />
-					: this.props.posts.map(e => (
-						(this.props.displayType === "Tile")
-							? <PostTile key={`${this.props.keyPreValue}${e.id}`} item={e} onClick={this.props.changeMyList} dataActivity={this.props.dataActivity} />
-							: <PostLine key={`${this.props.keyPreValue}${e.id}`} item={e} changeMyList={this.props.changeMyList} dataActivity={this.props.dataActivity} />
-					))
-				}
-			</div>
-		)
-	}
+  render() {
+    return (
+      <div className={`posts${this.props.display}`}>
+        {this.props.posts.length === 0
+          ? <NotFound className="notFound" title='No results found' message='select other parameters and try again'/>
+          : this.props.posts.map(e => (
+            (this.props.display === "Tile")
+              ? <PostTile key={`${this.props.keyPreValue}${e.id}`} item={e} onClick={this.changeMyList}/>
+              : <PostLine key={`${this.props.keyPreValue}${e.id}`} item={e} changeMyList={this.changeMyList}/>
+          ))
+        }
+      </div>
+    )
+  }
 }
 
+const mapStateToProps = state => {
+  return {
+    display: state.displayType.display,
+    fetchedPosts: state.posts.fetchedPosts,
+    myListPosts: state.posts.myListPosts
+  }
+}
+const mapDispatchToProps = {
+  addItemOnMyList,
+  delItemOnMyList
+}
 
-
-
-
-
-
-
-
-
-/* changeMyList = (e) => {
-	if (e.target.dataset.activity === "false") {
-		console.log("MyList:", this.props.myList)
-		this.props.setMyList(() => {
-			let list = this.props.myList
-			let id = e.target.parentNode.getAttribute("name")
-			e.target.dataset.activity = "true"
-			let item = this.props.responseSearch.find(element => {
-				if (element.id == id) {
-					return element
-				}
-			})
-			list.push(item)
-			console.log("list:", list)
-			return list;
-		})
-	} else if (e.target.dataset.activity === "true") {
-		console.log("MyList:", this.props.myList)
-		this.props.setMyList(() => {
-			let list = this.props.myList
-			let id = e.target.parentNode.getAttribute("name")
-			e.target.dataset.activity = "false"
-			let itemIndex = this.props.myList.find((element, index) => {
-				if (element.id === id) {
-					return index
-				}
-			})
-			list.splice(itemIndex, 1)
-			return list;
-		})
-	}
-} */
+export default connect(mapStateToProps, mapDispatchToProps)(Posts)
